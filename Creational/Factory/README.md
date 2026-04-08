@@ -112,16 +112,11 @@ Through this implementation I learned:
 * Separation of interface and implementation
 * Modular C++ project organization
 
-## Future Improvements
 
-* Add more vehicle types
-* Add error handling for invalid inputs
-* Use smart pointers instead of raw pointers
-* Add UML diagram
 
 ## Author
 
-Aditya Gajare\
+Aditya Gajare
 
 ---
 
