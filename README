@@ -1,0 +1,12 @@
+README.md
+Design Patterns in C++
+
+This repository contains C++ implementations of software design patterns for learning object oriented design and preparing for technical interviews.
+
+Patterns
+Observer Pattern
+Singleton Pattern 
+Factory Pattern 
+
+Author
+Aditya Gajare
