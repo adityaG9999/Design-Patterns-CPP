@@ -133,19 +133,12 @@ Through this implementation I learned:
 * Abstract classes and polymorphism
 * Modular project organization
 
-## Future Improvements
 
-* Add more desktop brands
-* Add optional components
-* Use smart pointers
-* Add configuration validation
-* Add pricing calculation
 
 ## Author
 
 Aditya Gajare
-BTech Electronics and Telecommunication Engineering
-Aspiring Software Engineer
+
 
 ---
 
