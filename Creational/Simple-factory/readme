@@ -1,126 +1,121 @@
-# Simple Factory Pattern - Logger System (C++)
+# Simple Factory Design Pattern - Logger System (C++)
 
 ## Overview
 
-This project demonstrates the Simple Factory Design Pattern using a logger system in C++. The factory is responsible for creating different types of logger objects (Debug, Info, Error) based on the input provided by the client.
+This project demonstrates the implementation of the **Simple Factory Design Pattern** in C++ using abstract classes and runtime polymorphism. The system is designed to create different types of loggers (Debug, Info, Error) without exposing the object creation logic to the client.
 
-The main idea is to keep object creation logic separate from the client code, making the system easier to manage and extend.
-
----
-
-## Objective
-
-* Understand how the Simple Factory Pattern works
-* Practice basic low-level design concepts
-* Learn how to structure C++ projects using header and source files
+The goal is to keep the client code clean and independent of concrete class implementations.
 
 ---
 
-## Design Pattern Used
+## Definition
 
-### Simple Factory Pattern
+The Simple Factory Pattern is a creational design approach where a single factory class is responsible for creating objects based on input. The client requests objects from the factory instead of directly instantiating them.
 
-A single factory class handles the creation of objects. The client does not directly instantiate classes. Instead, it requests the factory to provide the appropriate object.
+---
 
-This helps reduce tight coupling between components.
+## Problem Statement
+
+Creating objects directly in client code using the `new` keyword leads to tight coupling between the client and concrete classes. This makes the system harder to maintain and extend.
+
+---
+
+## Solution
+
+The object creation logic is moved to a separate factory class. The client interacts only with the abstract interface and the factory, reducing dependency on specific implementations.
 
 ---
 
 ## Project Structure
 
-```
+```id="m38q5s"
 .
-├── ilogger.hpp
-├── debuglogger.hpp
+├── ilogger.hpp              → Abstract product (interface)
+├── debuglogger.hpp          → Concrete product (Debug logger)
 ├── debuglogger.cpp
-├── infologger.hpp
+├── infologger.hpp           → Concrete product (Info logger)
 ├── infologger.cpp
-├── errorlogger.hpp
+├── errorlogger.hpp          → Concrete product (Error logger)
 ├── errorlogger.cpp
-├── loggerfactory.hpp
-├── loggerfactory.cpp
-├── client.cpp
+├── loggerfactory.hpp        → Factory class declaration
+├── loggerfactory.cpp        → Factory logic
+├── client.cpp               → Client code
 ```
 
 ---
 
 ## Components
 
-### 1. ILogger (Interface)
+### Product (Abstract Class)
 
-This is the base abstract class that defines a common method:
+The `Ilogger` interface defines a common method:
 
-```
+```id="o8vh7h"
 void log(const string& msg);
 ```
 
-All logger types implement this interface.
-
 ---
 
-### 2. Concrete Logger Classes
+### Concrete Products
 
 * DebugLogger
 * InfoLogger
 * ErrorLogger
 
-Each class provides its own implementation of the `log` method.
+Each class implements the `log` method with its own behavior.
 
 ---
 
-### 3. LoggerFactory
+### Factory
 
-The factory class contains a method:
+The `Loggerfactory` class is responsible for object creation:
 
-```
+```id="41u0ny"
 Ilogger* createlogger(Loglevel level);
 ```
 
-Based on the input log level, it returns the appropriate logger object.
+It returns the appropriate logger based on the input level.
 
 ---
 
-### 4. Client
+### Client
 
-The client interacts only with the factory and the interface. It does not know which concrete class is being used.
-
-Example:
-
-```
-Ilogger* logger = Loggerfactory::createlogger(Loglevel::Debug);
-logger->log("message");
-```
+The client uses the factory to obtain logger objects and interacts with them through the interface.
 
 ---
 
-## Workflow
+## Working
 
-1. The client requests a logger from the factory
-2. The factory checks the log level
-3. The factory creates and returns the appropriate logger
-4. The client uses the logger through the common interface
+1. The client specifies the log level
+2. The client calls the factory method
+3. The factory checks the log level
+4. The factory creates the appropriate logger object
+5. The factory returns a pointer to the base interface
+6. The client calls `log()` using polymorphism
 
 ---
 
-## How to Run
+## Compile Instructions
 
-### Compile
+Compile using:
 
+```id="pbgpuz"
+g++ -std=c++17 *.cpp -o logger
 ```
-g++ -std=c++17 -o logger *.cpp
-```
 
-### Run
+Run using:
 
-```
+```id="78vubz"
 ./logger
 ```
 
 ---
 
-## Sample Output
+## Example
 
-```
+Output:
+
+```id="6gxk03"
 DEBUG: This is a Debug logger msg
 INFO: This is a Infologger msg
 ERROR: This is a Errorlogger msg
@@ -130,38 +125,45 @@ ERROR: This is a Errorlogger msg
 
 ## Advantages
 
-* Centralized object creation
-* Cleaner and more readable code
-* Reduced coupling between client and implementation
-* Easier to manage and extend
+* Reduces coupling between client and concrete classes
+* Centralizes object creation logic
+* Improves code readability and maintainability
+* Easy to extend with new logger types
 
 ---
 
 ## Limitations
 
-* The factory can become complex if too many types are added
-* It slightly violates the Open/Closed Principle since adding new types requires modifying the factory
+* Factory class may grow as more types are added
+* Requires modification of factory when adding new types
 
 ---
 
-## Key Learnings
+## Design Principles Used
 
-* Separation of interface and implementation
-* Importance of clean project structure
-* Practical understanding of a commonly used design pattern
-
----
-
-## Future Improvements
-
-* Refactor into Factory Method Pattern
-* Introduce Singleton for logger instances
-* Add file-based logging
-* Make logging thread-safe
+* Program to interface, not implementation
+* Encapsulation of object creation
+* Runtime polymorphism
+* Separation of concerns
 
 ---
 
+## Learning Outcome
 
+Through this implementation, the following concepts were practiced:
+
+* Abstract classes and virtual functions
+* Runtime polymorphism
+* Factory design pattern structure
+* Clean separation between interface and implementation
+* Modular project organization in C++
+
+---
+
+## Author
 
 Aditya Gajare
-BTech ENTC | Preparing for Software Development roles
+
+---
+
+This project is part of my learning journey in design patterns and low-level system design using C++.
